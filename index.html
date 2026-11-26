@@ -6,6 +6,7 @@
   <title>TECNOMAT · Tests de Tecnología de Materiales</title>
   <style>
     :root {
+      --lateral: #fce4d6;
       --principal: #774369; --secundario: #b24a22; --acento: #56c2cf; --naranja: #ef9562;
       --suave-turq: #eaf6f8; --borde-turq: #b9e1e7;
       --suave-mel: #fdf0e7; --borde-mel: #f5cdb3;
@@ -172,6 +173,74 @@
     footer { text-align: center; padding: 22px; font-size: 0.82rem; color: var(--gris); }
     footer button { background: none; border: none; color: var(--secundario); text-decoration: underline; font-size: 0.8rem; margin-top: 2px; }
 
+
+    /* ===== ESTILO ELEGANTE ===== */
+    body { font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif; background-color: #faf7f4; background-image: none; }
+    .barra { background: var(--blanco); border-bottom: 1px solid var(--linea); box-shadow: 0 1px 0 rgba(0,0,0,0.02); }
+    .barra::after { content: ""; display: block; height: 3px; background: linear-gradient(90deg, var(--acento), var(--principal) 40%, var(--secundario) 75%, var(--naranja)); }
+    .logo { font-family: Georgia, "Times New Roman", serif; font-size: 1.25rem; letter-spacing: 1.5px; }
+    .logo-cuad { background: var(--principal); color: var(--blanco); border-radius: 50%; font-family: Georgia, serif; font-size: 0.95rem; }
+    .logo .mat { color: var(--secundario); }
+    .nav-link { color: var(--gris); font-weight: 500; letter-spacing: 0.3px; border-radius: 0; padding: 6px 4px; margin: 0 8px; border-bottom: 2px solid transparent; }
+    .nav-link:hover, .nav-link.activo { background: none; color: var(--principal); border-bottom-color: var(--principal); }
+    .contador { width: 46px; height: 46px; }
+    .contador .dentro { width: 40px; height: 40px; background: var(--blanco); color: var(--principal); }
+    .contador b { color: var(--principal); font-size: 0.9rem; }
+    .contador span { color: var(--gris); opacity: 1; }
+
+    .hero { background: var(--blanco); border: 1px solid var(--linea); border-radius: 16px; overflow: hidden; margin-bottom: 18px; }
+    .hero-txt { padding: 30px clamp(20px, 3vw, 40px) 24px; border-bottom: 1px solid var(--linea);
+      background: linear-gradient(120deg, #fbf3ee 0%, #f6eef3 60%, #eef7f8 100%); }
+    .eyebrow { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--secundario); margin-bottom: 8px; }
+    .hero h1.hola { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(1.7rem, 2.6vw, 2.5rem); color: var(--negro); margin-bottom: 8px; }
+    .hero .intro { color: var(--gris); margin: 0; max-width: 720px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .kpi { padding: 22px clamp(16px, 2vw, 30px); display: flex; flex-direction: column; gap: 8px; border-right: 1px solid var(--linea); }
+    .kpi:last-child { border-right: none; }
+    .kpi-lbl { font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gris); }
+    .kpi-num { font-family: Georgia, "Times New Roman", serif; font-size: 2.6rem; line-height: 1; color: var(--principal); }
+    .kpi:nth-child(4) .kpi-num { color: var(--secundario); }
+    .kpi-sub { font-size: 0.82rem; color: var(--gris); line-height: 1.4; }
+    .kpi-fila { display: flex; align-items: center; gap: 14px; }
+    .anillo { flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      background: conic-gradient(var(--c) var(--p, 0deg), #eee8e3 var(--p, 0deg)); }
+    .a-turq { --c: var(--acento); }
+    .a-teja { --c: var(--secundario); }
+    .anillo-in { width: 56px; height: 56px; border-radius: 50%; background: var(--blanco); display: flex; align-items: center; justify-content: center;
+      font-family: Georgia, serif; font-size: 1.05rem; color: var(--negro); }
+
+    .aviso { background: var(--blanco); border: 1px solid var(--linea); border-left: 3px solid var(--acento); }
+    .tarjeta { border: 1px solid var(--linea); box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+    h3.sec { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 1.35rem; color: var(--negro); }
+    h2.titulo { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+    .bloque-cab { border-bottom: 1px solid var(--linea); padding-bottom: 6px; margin: 18px 0 10px; }
+    .bloque-cab h3 { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--secundario); }
+    .bloque-cab span { font-size: 0.75rem; color: var(--gris); letter-spacing: 0.5px; }
+    .tema-fila { border: 1px solid var(--linea); border-left: 3px solid var(--acento); border-radius: 10px; }
+    .bloque .tema-fila:nth-of-type(4n+2) { border-left-color: var(--naranja); }
+    .bloque .tema-fila:nth-of-type(4n+3) { border-left-color: var(--secundario); }
+    .bloque .tema-fila:nth-of-type(4n+4) { border-left-color: var(--principal); }
+    .tema-fila .circ { background: none; color: var(--principal); font-family: Georgia, serif; font-size: 1.3rem; font-weight: 400; border-radius: 0; width: 34px; }
+    .tema-fila .flecha { font-size: 1.1rem; color: var(--principal); }
+    .barra-prog { height: 4px; }
+    .boton { background: var(--principal); color: var(--blanco); border-color: var(--principal); font-weight: 600; letter-spacing: 0.3px; }
+    .boton:hover { background: var(--negro); border-color: var(--negro); color: var(--blanco); }
+    .boton.sec { background: var(--blanco); color: var(--principal); border: 1px solid var(--principal); }
+    .boton.sec:hover { background: var(--principal); color: var(--blanco); }
+    .boton.nar { background: var(--blanco); color: var(--secundario); border: 1px solid var(--secundario); }
+    .boton.nar:hover { background: var(--secundario); color: var(--blanco); }
+    .opcion-v.sel { border: 1px solid var(--principal); padding: 10px 14px; background: var(--suave-cir); }
+    .opcion-v .punto { border-color: var(--principal); }
+    .opcion-v.sel .punto { background: var(--principal); }
+    .pastilla { background: none; color: var(--secundario); padding: 0; letter-spacing: 2px; }
+    .nota-grande { font-family: Georgia, serif; font-weight: 400; color: var(--principal); }
+    .veredicto { font-family: Georgia, serif; font-weight: 400; font-size: 1.25rem; }
+    @media (max-width: 900px) {
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+      .kpi:nth-child(2) { border-right: none; }
+      .kpi:nth-child(1), .kpi:nth-child(2) { border-bottom: 1px solid var(--linea); }
+    }
+
     @media (max-width: 600px) {
       .barra-in { flex-wrap: wrap; gap: 8px; }
       nav.enlaces { order: 3; width: 100%; margin-left: 0; }
@@ -185,7 +254,7 @@
 
   <header class="barra">
     <div class="barra-in">
-      <a class="logo" data-ir="inicio"><span class="logo-cuad">T</span>TECNOMAT</a>
+      <a class="logo" data-ir="inicio"><span class="logo-cuad">T</span><span>TECNO<span class="mat">MAT</span></span></a>
       <nav class="enlaces">
         <button class="nav-link" data-ir="inicio">Temas</button>
         <button class="nav-link" data-ir="simulacros">Simulacros</button>
@@ -206,16 +275,38 @@
           <b>¿Cómo funciona?</b><br>
           Elige un tema del libro, marca los apartados que quieras practicar y responde. Tras cada respuesta verás la justificación y podrás marcarla para repasar. Al terminar, puedes repetir las marcadas o las falladas.
         </div>
-        <div class="franja">📖 Basado en el libro <b>Tecnología de Materiales</b> · J. Oñoro</div>
-        <div class="tarjeta">
-          <h1 class="hola">Hola, vamos a por TECNOMAT.</h1>
-          <p class="intro">2.401 preguntas de verdadero o falso ordenadas por los temas del libro, cada una con su justificación.</p>
-          <ul class="stats">
-            <li><span>Preguntas respondidas</span><b id="stTotal">0</b></li>
-            <li><span>Preguntas distintas hechas</span><b id="stUnicas">0</b></li>
-            <li><span>Porcentaje de aciertos</span><b id="stAcierto">–</b></li>
-            <li><span>Marcadas para repasar</span><b id="stMarcadas">0</b></li>
-          </ul>
+        <div class="hero">
+          <div class="hero-txt">
+            <span class="eyebrow">Tecnología de Materiales</span>
+            <h1 class="hola">Tu preparación para TECNOMAT</h1>
+            <p class="intro">2.401 preguntas de verdadero o falso, ordenadas por los temas del libro y con la justificación de cada respuesta.</p>
+          </div>
+          <div class="kpis">
+            <div class="kpi">
+              <span class="kpi-lbl">Respondidas</span>
+              <span class="kpi-num" id="stTotal">0</span>
+              <span class="kpi-sub">preguntas en total</span>
+            </div>
+            <div class="kpi">
+              <span class="kpi-lbl">Progreso</span>
+              <div class="kpi-fila">
+                <div class="anillo a-turq" id="ringUnicas"><div class="anillo-in" id="stUnicasPct">0%</div></div>
+                <span class="kpi-sub" id="stUnicas">0 de 2.401<br>preguntas vistas</span>
+              </div>
+            </div>
+            <div class="kpi">
+              <span class="kpi-lbl">Aciertos</span>
+              <div class="kpi-fila">
+                <div class="anillo a-teja" id="ringAcierto"><div class="anillo-in" id="stAcierto">–</div></div>
+                <span class="kpi-sub" id="stOkTxt">0 aciertos<br>0 fallos</span>
+              </div>
+            </div>
+            <div class="kpi">
+              <span class="kpi-lbl">Para repasar</span>
+              <span class="kpi-num" id="stMarcadas">0</span>
+              <span class="kpi-sub">preguntas marcadas</span>
+            </div>
+          </div>
         </div>
         <div class="tarjeta">
           <h3 class="sec">Temas</h3>
@@ -224,7 +315,7 @@
         <div class="tarjeta">
           <h3 class="sec">¿Preparando una PE o el examen?</h3>
           <p class="intro">Haz un simulacro de 25 o 50 preguntas con corrección al final, como en el examen.</p>
-          <button class="boton" data-ir="simulacros">Ir a simulacros ↗</button>
+          <button class="boton" data-ir="simulacros">Ir a simulacros</button>
         </div>
       </div>
 
@@ -252,7 +343,7 @@
             <div class="opciones-v" id="opcFiltro"></div>
           </div>
           <p class="resumen-sel" id="resumenSel"></p>
-          <button class="boton" id="btnEmpezarTema">Empezar test ↗</button>
+          <button class="boton" id="btnEmpezarTema">Empezar test</button>
         </div>
       </div>
 
@@ -270,7 +361,7 @@
           <h3 class="sec">2. ¿Cuántas preguntas?</h3>
           <div class="opciones-v" id="opcSimNum"></div>
           <label class="check" style="margin:14px 0"><input type="checkbox" id="simPenaliza"> Mostrar también la nota con penalización (cada fallo resta un acierto)</label>
-          <button class="boton" id="btnEmpezarSim">Empezar simulacro ↗</button>
+          <button class="boton" id="btnEmpezarSim">Empezar simulacro</button>
         </div>
       </div>
 
@@ -298,7 +389,7 @@
           <div id="resPenal"></div>
         </div>
         <div class="aviso">
-          <b>🔖 Repasar</b><br>Vuelve a practicar las preguntas que has marcado o fallado.
+          <b>Repasar</b><br>Vuelve a practicar las preguntas que has marcado o fallado.
           <div class="pila-botones" id="resBotones" style="margin-top:12px"></div>
         </div>
         <div class="tarjeta">
@@ -488,8 +579,12 @@
       $('contador').style.setProperty('--grados', (360 * unicas / Q.length) + 'deg');
       $('contador').title = fmt(P.total) + ' respuestas en total · ' + fmt(unicas) + ' de ' + fmt(Q.length) + ' preguntas distintas (' + pct(unicas, Q.length) + '%)';
       $('stTotal').textContent = fmt(P.total);
-      $('stUnicas').textContent = fmt(unicas) + ' / ' + fmt(Q.length);
+      $('stUnicas').innerHTML = fmt(unicas) + ' de ' + fmt(Q.length) + '<br>preguntas vistas';
+      $('stUnicasPct').textContent = pct(unicas, Q.length) + '%';
+      $('ringUnicas').style.setProperty('--p', (360 * unicas / Q.length) + 'deg');
       $('stAcierto').textContent = P.total ? pct(P.ok, P.total) + '%' : '–';
+      $('ringAcierto').style.setProperty('--p', (P.total ? 360 * P.ok / P.total : 0) + 'deg');
+      $('stOkTxt').innerHTML = fmt(P.ok) + ' aciertos<br>' + fmt(P.total - P.ok) + ' fallos';
       $('stMarcadas').textContent = fmt(P.m.length);
       pintarMenu();
     }
@@ -512,7 +607,7 @@
           var bar = el('div', 'barra-prog'); var d = el('div'); d.style.width = pct(h, lista.length) + '%'; bar.appendChild(d);
           info.appendChild(bar);
           f.appendChild(info);
-          f.appendChild(el('span', 'flecha', '›'));
+          f.appendChild(el('span', 'flecha', '→'));
           b.appendChild(f);
         });
         c.appendChild(b);
@@ -540,7 +635,7 @@
         cb.addEventListener('change', resumenTema);
         lab.appendChild(cb);
         var nom = el('span', 'nom', nombreApartado[c]);
-        nom.appendChild(el('small', null, '📖 Libro, apartado ' + libroApartado[c]));
+        nom.appendChild(el('small', null, 'Libro, apartado ' + libroApartado[c]));
         lab.appendChild(nom);
         var cnt = el('span', 'cnt'); cnt.innerHTML = '<b>' + hechas(qs) + '</b> / ' + qs.length;
         lab.appendChild(cnt);
@@ -627,13 +722,13 @@
     function pintarPregunta() {
       var q = T.qs[T.idx];
       var aciertos = 0; Object.keys(T.resp).forEach(function (k) { if (T.resp[k] === porId[k].a) aciertos++; });
-      $('testInfo').innerHTML = (T.modo === 'simulacro' ? '📝 ' : '') + 'Pregunta <b>' + (T.idx + 1) + '</b> de <b>' + T.qs.length + '</b>' +
+      $('testInfo').innerHTML = (T.modo === 'simulacro' ? '' : '') + 'Pregunta <b>' + (T.idx + 1) + '</b> de <b>' + T.qs.length + '</b>' +
         (T.modo === 'practica' ? ' · aciertos: <b>' + aciertos + '</b>' : '') + '<br><span style="font-weight:400">' + T.desc + '</span>';
       $('testBarra').style.width = pct(T.idx, T.qs.length) + '%';
       var meta = $('qMeta'); meta.innerHTML = '';
       var tl = temaDeApartado[q.s];
       meta.appendChild(el('span', 'pastilla', 'TEMA ' + tl.n + ' · ' + tl.nombre.toUpperCase()));
-      meta.appendChild(el('span', null, nombreApartado[q.s] + ' · 📖 libro ' + libroApartado[q.s]));
+      meta.appendChild(el('span', null, nombreApartado[q.s] + ' · libro ' + libroApartado[q.s]));
       var r = P.r[q.id];
       if (r) meta.appendChild(el('span', null, 'Ya la has respondido ' + r[0] + (r[0] === 1 ? ' vez' : ' veces')));
       $('qTexto').textContent = q.q;
@@ -658,14 +753,14 @@
       var j = el('div', 'justif');
       j.appendChild(el('div', 'tit', 'Justificación'));
       j.appendChild(el('p', null, q.e || 'Esta pregunta todavía no tiene justificación.'));
-      j.appendChild(el('div', 'libro-cita', '📖 Para ampliar: libro, apartado ' + libroApartado[q.s] + ' (' + nombreApartado[q.s] + ')'));
+      j.appendChild(el('div', 'libro-cita', 'Para ampliar: libro, apartado ' + libroApartado[q.s] + ' (' + nombreApartado[q.s] + ')'));
       return j;
     }
     function casillaMarcar(q, alCambiar) {
       var lab = el('label', 'marcar');
       var cb = el('input'); cb.type = 'checkbox'; cb.checked = marcada(q.id);
       cb.addEventListener('change', function () { setMarcada(q.id, cb.checked); if (alCambiar) alCambiar(); });
-      lab.appendChild(cb); lab.appendChild(el('span', null, '🔖 Marcar para repasar'));
+      lab.appendChild(cb); lab.appendChild(el('span', null, 'Marcar para repasar'));
       return lab;
     }
     function responder(v) {
@@ -682,13 +777,13 @@
         else if (val === v) b.classList.add('es-incorrecta');
       });
       var c = el('div', 'correccion ' + (bien ? 'ok' : 'mal'));
-      c.appendChild(el('div', 'veredicto', bien ? '✔ ¡Correcto!' : '✘ Incorrecto'));
+      c.appendChild(el('div', 'veredicto', bien ? 'Correcto' : 'Incorrecto'));
       c.appendChild(el('div', null, 'La afirmación es ' + (q.a ? 'VERDADERA' : 'FALSA') + '.'));
       c.appendChild(bloqueJustificacion(q));
       c.appendChild(casillaMarcar(q));
       $('qCorr').innerHTML = ''; $('qCorr').appendChild(c);
       var acc = $('qAcciones'); acc.innerHTML = '';
-      var sig = el('button', 'boton', T.idx + 1 < T.qs.length ? 'Siguiente pregunta →' : 'Ver resultado ↗');
+      var sig = el('button', 'boton', T.idx + 1 < T.qs.length ? 'Siguiente pregunta →' : 'Ver resultado');
       sig.addEventListener('click', siguiente);
       acc.appendChild(sig);
     }
@@ -729,10 +824,10 @@
       $('resSub').textContent = T.desc;
       $('resNota').textContent = nota.toFixed(2).replace('.', ',') + ' / 10';
       var st = $('resStats'); st.innerHTML = '';
-      st.appendChild(el('li', 'ok', '✔ ' + ok + ' aciertos'));
-      st.appendChild(el('li', 'mal', '✘ ' + mal + ' fallos'));
-      if (blanco) st.appendChild(el('li', null, '○ ' + blanco + ' sin responder'));
-      st.appendChild(el('li', null, nota >= 5 ? '🎉 Aprobado' : 'Sigue practicando'));
+      st.appendChild(el('li', 'ok', ok + ' aciertos'));
+      st.appendChild(el('li', 'mal', mal + ' fallos'));
+      if (blanco) st.appendChild(el('li', null, blanco + ' sin responder'));
+      st.appendChild(el('li', null, nota >= 5 ? 'Aprobado' : 'Sigue practicando'));
       $('resPenal').innerHTML = '';
       if (T.modo === 'simulacro' && T.penal) {
         var np = Math.max(0, 10 * (ok - mal) / n);
@@ -748,17 +843,17 @@
     function pintarBotonesRepaso() {
       var b = $('resBotones'); b.innerHTML = '';
       var marcadasTest = T.qs.filter(function (q) { return marcada(q.id); });
-      var rep = el('button', 'boton', '🔖 Repasar las marcadas de este test (' + marcadasTest.length + ')');
+      var rep = el('button', 'boton', 'Repasar las marcadas de este test (' + marcadasTest.length + ')');
       rep.disabled = !marcadasTest.length;
       rep.addEventListener('click', function () { empezarTest(barajar(marcadasTest), 'practica', 'Repaso de las marcadas del test anterior'); });
       b.appendChild(rep);
       var fall = T.qs.filter(function (q) { return T.resp[q.id] !== q.a; });
-      var bf = el('button', 'boton nar', '↺ Repasar las falladas de este test (' + fall.length + ')');
+      var bf = el('button', 'boton nar', 'Repasar las falladas de este test (' + fall.length + ')');
       bf.disabled = !fall.length;
       bf.addEventListener('click', function () { empezarTest(barajar(fall), 'practica', 'Repaso de las falladas del test anterior'); });
       b.appendChild(bf);
       var todas = P.m.map(function (id) { return porId[id]; }).filter(Boolean);
-      var bt = el('button', 'boton sec', '🔖 Repasar todas mis marcadas (' + todas.length + ')');
+      var bt = el('button', 'boton sec', 'Repasar todas mis marcadas (' + todas.length + ')');
       bt.disabled = !todas.length;
       bt.addEventListener('click', function () { empezarTest(barajar(todas), 'practica', 'Repaso de todas las preguntas marcadas'); });
       b.appendChild(bt);
