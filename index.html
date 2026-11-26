@@ -3,211 +3,907 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TECNOMAT</title>
+  <title>TECNOMAT · Tests de Tecnología de Materiales</title>
   <style>
     :root {
-      --principal: #1f4e79;
-      --acento: #f2a541;
-      --fondo: #f6f8fb;
-      --texto: #1d2733;
-      --gris: #5b6775;
+      --principal: #774369;   /* ciruela */
+      --secundario: #b24a22;  /* teja */
+      --acento: #56c2cf;      /* turquesa */
+      --naranja: #ef9562;     /* naranja melocotón */
+      --cabecera: #fce4d6;    /* melocotón claro */
+      --fondo: #fdf7f2;       /* crema muy claro */
+      --turq-claro: #eef8f9;  /* turquesa muy claro */
+      --negro: #121212;
+      --texto: #1a1a1a;
+      --gris: #5e5a5e;
       --blanco: #ffffff;
+      --ok: #2e8b57;
+      --ok-claro: #e6f4ec;
+      --mal: #c0392b;
+      --mal-claro: #fbe9e7;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: "Segoe UI", Roboto, Arial, sans-serif;
       background: var(--fondo);
       color: var(--texto);
       line-height: 1.6;
     }
-    a { color: var(--principal); }
+    a { color: var(--secundario); }
+    button { font-family: inherit; cursor: pointer; }
 
     /* ---------- CABECERA Y MENÚ ---------- */
     header {
-      background: var(--principal);
-      color: var(--blanco);
+      background: var(--cabecera);
+      border-bottom: 4px solid var(--acento);
+      color: var(--negro);
       position: sticky;
       top: 0;
       z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     }
     .barra {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
+      max-width: 1100px; margin: 0 auto; padding: 12px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px;
     }
     .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--blanco);
-      text-decoration: none;
+      font-size: 1.5rem; font-weight: 800; letter-spacing: 2px;
+      color: var(--negro); text-decoration: none; cursor: pointer;
     }
-    .logo span { color: var(--acento); }
-    nav ul { list-style: none; display: flex; gap: 22px; flex-wrap: wrap; }
+    .logo span { color: var(--secundario); }
+    nav ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
     nav a {
-      color: var(--blanco);
-      text-decoration: none;
-      font-weight: 500;
-      padding-bottom: 3px;
-      border-bottom: 2px solid transparent;
+      color: var(--negro); text-decoration: none; font-weight: 500;
+      padding-bottom: 3px; border-bottom: 2px solid transparent; cursor: pointer;
     }
-    nav a:hover { border-bottom-color: var(--acento); }
+    nav a:hover, nav a.activo { border-bottom-color: var(--acento); color: var(--principal); }
+    .contador-nav {
+      background: var(--negro); color: var(--blanco); border-radius: 20px;
+      padding: 3px 12px; font-size: 0.85rem; font-weight: 600; white-space: nowrap;
+    }
+    .contador-nav b { color: var(--naranja); }
 
     /* ---------- PORTADA ---------- */
     .portada {
-      background: linear-gradient(135deg, var(--principal), #2d6ea3);
-      color: var(--blanco);
-      text-align: center;
-      padding: 90px 20px;
+      background: linear-gradient(135deg, var(--principal), var(--secundario));
+      color: var(--blanco); text-align: center; padding: 70px 20px 80px;
     }
-    .portada h1 { font-size: 2.8rem; margin-bottom: 12px; }
-    .portada p { font-size: 1.2rem; max-width: 640px; margin: 0 auto 28px; opacity: 0.9; }
+    .portada h1 { font-size: 2.6rem; margin-bottom: 10px; }
+    .portada p { font-size: 1.15rem; max-width: 680px; margin: 0 auto 26px; opacity: 0.92; }
+    .stats {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 12px; padding: 12px 20px; min-width: 150px;
+    }
+    .stat .num { font-size: 1.8rem; font-weight: 800; line-height: 1.2; }
+    .stat .lbl { font-size: 0.85rem; opacity: 0.9; }
+
     .boton {
-      display: inline-block;
-      background: var(--acento);
-      color: var(--texto);
-      padding: 12px 28px;
-      border-radius: 6px;
-      font-weight: 700;
-      text-decoration: none;
+      display: inline-block; background: var(--naranja); color: var(--negro);
+      padding: 11px 24px; border-radius: 6px; font-weight: 700; font-size: 1rem;
+      text-decoration: none; border: 2px solid var(--naranja); transition: all 0.2s;
     }
-    .boton:hover { filter: brightness(1.08); }
+    .boton:hover { background: var(--negro); color: var(--naranja); border-color: var(--negro); }
+    .boton.sec { background: transparent; border-color: var(--principal); color: var(--principal); }
+    .boton.sec:hover { background: var(--principal); color: var(--blanco); }
+    .boton.turq { background: var(--acento); border-color: var(--acento); }
+    .boton.turq:hover { background: var(--negro); color: var(--acento); border-color: var(--negro); }
+    .boton:disabled { opacity: 0.45; cursor: not-allowed; }
+    .boton.peq { padding: 7px 14px; font-size: 0.9rem; }
+    .fila-botones { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
 
     /* ---------- SECCIONES ---------- */
-    section { max-width: 1100px; margin: 0 auto; padding: 70px 20px; }
+    section { max-width: 1100px; margin: 0 auto; padding: 56px 20px; }
     section h2 {
-      font-size: 2rem;
-      color: var(--principal);
-      margin-bottom: 10px;
+      font-size: 1.9rem; color: var(--negro); margin-bottom: 10px;
+      display: inline-block; border-bottom: 4px solid var(--acento); padding-bottom: 4px;
     }
-    .subtitulo { color: var(--gris); margin-bottom: 36px; }
+    .subtitulo { display: block; color: var(--gris); margin-bottom: 30px; }
+    .vista { display: none; }
+    .vista.activa { display: block; }
+    .volver { background: none; border: none; color: var(--principal); font-weight: 600; font-size: 0.95rem; margin-bottom: 18px; }
+    .volver:hover { text-decoration: underline; }
 
-    /* Tarjetas del temario */
+    /* Tarjetas de temas */
     .rejilla {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 22px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px;
     }
     .tarjeta {
-      background: var(--blanco);
-      border-radius: 10px;
-      padding: 24px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-      border-top: 4px solid var(--acento);
+      background: var(--blanco); border-radius: 10px; padding: 22px;
+      box-shadow: 0 2px 12px rgba(119, 67, 105, 0.10);
+      border-top: 5px solid var(--acento); transition: transform 0.2s; cursor: pointer;
+      display: flex; flex-direction: column;
     }
-    .tarjeta .num { font-size: 0.85rem; color: var(--gris); font-weight: 700; }
-    .tarjeta h3 { margin: 6px 0 10px; color: var(--principal); }
-    .tarjeta p { color: var(--gris); font-size: 0.95rem; }
-
-    .fondo-blanco { background: var(--blanco); max-width: none; }
-    .fondo-blanco > div { max-width: 1100px; margin: 0 auto; }
-
-    /* Lista de recursos */
-    .recursos { list-style: none; display: grid; gap: 12px; }
-    .recursos li {
-      background: var(--fondo);
-      padding: 14px 18px;
-      border-radius: 8px;
-      border-left: 4px solid var(--principal);
+    .tarjeta:hover { transform: translateY(-4px); }
+    .tarjeta:nth-child(4n+2) { border-top-color: var(--naranja); }
+    .tarjeta:nth-child(4n+3) { border-top-color: var(--secundario); }
+    .tarjeta:nth-child(4n+4) { border-top-color: var(--principal); }
+    .pastilla {
+      display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+      color: var(--blanco); background: var(--negro); padding: 3px 10px; border-radius: 20px;
+      align-self: flex-start;
     }
+    .tarjeta h3 { margin: 10px 0 8px; color: var(--negro); font-size: 1.1rem; }
+    .tarjeta p { color: var(--gris); font-size: 0.92rem; flex: 1; }
+    .progreso { margin-top: 14px; }
+    .progreso .txt { font-size: 0.85rem; color: var(--gris); display: flex; justify-content: space-between; }
+    .progreso .txt b { color: var(--negro); }
+    .barra-prog { height: 8px; background: #efe6e0; border-radius: 6px; overflow: hidden; margin-top: 4px; }
+    .barra-prog div { height: 100%; background: linear-gradient(90deg, var(--acento), var(--principal)); width: 0; transition: width 0.4s; }
 
-    /* ---------- PIE ---------- */
+    /* Selector de apartados */
+    .panel {
+      background: var(--blanco); border-radius: 12px; padding: 24px;
+      box-shadow: 0 2px 12px rgba(119, 67, 105, 0.08); margin-bottom: 22px;
+    }
+    .panel h3 { margin-bottom: 14px; color: var(--negro); }
+    .apartado {
+      display: flex; align-items: center; gap: 12px; padding: 11px 12px;
+      border-radius: 8px; border-left: 4px solid var(--acento); background: var(--fondo); margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .apartado:nth-child(4n+2) { border-left-color: var(--naranja); }
+    .apartado:nth-child(4n+3) { border-left-color: var(--secundario); }
+    .apartado:nth-child(4n+4) { border-left-color: var(--principal); }
+    .apartado input { width: 19px; height: 19px; accent-color: var(--principal); flex-shrink: 0; }
+    .apartado .nom { flex: 1; font-weight: 500; }
+    .libro-ref { display: inline-block; margin-left: 10px; font-size: 0.78rem; font-weight: 600; color: var(--principal); background: #f3e9f0; padding: 1px 8px; border-radius: 10px; }
+    .libro-cita { margin-top: 8px; font-size: 0.85rem; color: var(--principal); font-weight: 600; }
+    .apartado .cnt { font-size: 0.85rem; color: var(--gris); white-space: nowrap; }
+    .apartado .cnt b { color: var(--negro); }
+    .mini-links { margin-bottom: 12px; font-size: 0.9rem; }
+    .mini-links a { cursor: pointer; margin-right: 14px; font-weight: 600; }
+
+    .opciones { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; }
+    .opcion label.tit { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip {
+      border: 2px solid var(--principal); background: var(--blanco); color: var(--principal);
+      border-radius: 20px; padding: 5px 14px; font-weight: 600; font-size: 0.9rem;
+    }
+    .chip.sel { background: var(--principal); color: var(--blanco); }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; margin-top: 6px; cursor: pointer; }
+    .check input { width: 17px; height: 17px; accent-color: var(--principal); }
+    .resumen-sel { margin-top: 16px; color: var(--gris); font-size: 0.95rem; }
+    .resumen-sel b { color: var(--negro); }
+
+    /* ---------- TEST ---------- */
+    .test-cab { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+    .test-cab .info { font-weight: 600; color: var(--gris); }
+    .test-cab .info b { color: var(--negro); }
+    .pregunta-card {
+      background: var(--blanco); border-radius: 14px; padding: 30px;
+      box-shadow: 0 4px 18px rgba(119, 67, 105, 0.10); border-top: 6px solid var(--principal);
+      margin-top: 14px;
+    }
+    .meta { font-size: 0.82rem; color: var(--gris); margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .enunciado { font-size: 1.25rem; font-weight: 600; color: var(--negro); margin-bottom: 24px; }
+    .respuestas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .resp {
+      flex: 1; min-width: 140px; padding: 14px; border-radius: 10px; font-size: 1.1rem; font-weight: 700;
+      border: 2px solid var(--negro); background: var(--blanco); color: var(--negro); transition: all 0.15s;
+    }
+    .resp:hover:not(:disabled) { background: var(--negro); color: var(--blanco); }
+    .resp.v:hover:not(:disabled) { background: var(--ok); border-color: var(--ok); }
+    .resp.f:hover:not(:disabled) { background: var(--mal); border-color: var(--mal); }
+    .resp.blanco { flex: 0.6; font-size: 0.95rem; border-style: dashed; color: var(--gris); border-color: var(--gris); }
+    .resp.elegida { outline: 4px solid var(--acento); }
+    .resp.es-correcta { background: var(--ok); border-color: var(--ok); color: var(--blanco); }
+    .resp.es-incorrecta { background: var(--mal); border-color: var(--mal); color: var(--blanco); }
+    .resp:disabled { cursor: default; color: var(--gris); opacity: 1; }
+    .resp.es-correcta:disabled, .resp.es-incorrecta:disabled { color: var(--blanco); }
+
+    .correccion { margin-top: 22px; border-radius: 10px; padding: 18px 20px; }
+    .correccion.ok { background: var(--ok-claro); border-left: 5px solid var(--ok); }
+    .correccion.mal { background: var(--mal-claro); border-left: 5px solid var(--mal); }
+    .correccion.blanco { background: #f1eef0; border-left: 5px solid var(--gris); }
+    .correccion .veredicto { font-weight: 800; font-size: 1.1rem; margin-bottom: 4px; }
+    .correccion.ok .veredicto { color: var(--ok); }
+    .correccion.mal .veredicto { color: var(--mal); }
+    .justif { margin-top: 10px; }
+    .justif .tit { font-weight: 700; color: var(--principal); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+    .justif p { margin-top: 4px; }
+    .marcar {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 16px; padding: 9px 14px;
+      background: var(--cabecera); border-radius: 8px; font-weight: 600; cursor: pointer; user-select: none;
+    }
+    .marcar input { width: 19px; height: 19px; accent-color: var(--secundario); }
+    .acciones-test { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+
+    /* ---------- RESULTADOS ---------- */
+    .nota-grande {
+      font-size: 3.4rem; font-weight: 800; color: var(--principal); line-height: 1;
+    }
+    .res-stats { display: flex; gap: 14px; flex-wrap: wrap; margin: 18px 0; }
+    .res-stat { background: var(--fondo); border-radius: 10px; padding: 10px 18px; font-weight: 600; }
+    .res-stat.ok { color: var(--ok); } .res-stat.mal { color: var(--mal); }
+    .revision-item {
+      background: var(--blanco); border-radius: 10px; padding: 16px 18px; margin-bottom: 12px;
+      border-left: 5px solid var(--gris); box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .revision-item.ok { border-left-color: var(--ok); }
+    .revision-item.mal { border-left-color: var(--mal); }
+    .revision-item .q { font-weight: 600; }
+    .revision-item .r { font-size: 0.9rem; margin-top: 4px; }
+    .revision-item .justif p { font-size: 0.95rem; }
+    .filtros-rev { margin: 10px 0 16px; }
+
+    .aviso { background: var(--turq-claro); border-left: 4px solid var(--acento); border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; font-size: 0.95rem; }
+    .vacio { color: var(--gris); font-style: italic; padding: 10px 0; }
+
+    /* Evaluación */
+    .eval-fondo { background: var(--turq-claro); }
+    .eval-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .eval-card { background: var(--blanco); border-radius: 10px; padding: 20px; border-left: 4px solid var(--acento); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .eval-card:nth-child(2) { border-left-color: var(--naranja); }
+    .eval-card:nth-child(3) { border-left-color: var(--secundario); }
+    .eval-card:nth-child(4) { border-left-color: var(--principal); }
+    .eval-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--negro); }
+    .eval-card ul { padding-left: 18px; color: var(--gris); font-size: 0.95rem; }
+    .eval-card li { margin-bottom: 4px; }
+
     footer {
-      background: var(--texto);
-      color: #c9d1da;
-      text-align: center;
-      padding: 28px 20px;
-      font-size: 0.9rem;
+      background: var(--negro); color: #b9b3b8; border-top: 5px solid var(--acento);
+      text-align: center; padding: 26px 20px; font-size: 0.9rem;
     }
+    footer button { background: none; border: none; color: var(--naranja); text-decoration: underline; font-size: 0.85rem; margin-top: 6px; }
 
-    /* ---------- MÓVIL ---------- */
     @media (max-width: 600px) {
       .portada h1 { font-size: 2rem; }
-      nav ul { gap: 14px; }
+      nav ul { gap: 12px; }
+      .pregunta-card { padding: 20px; }
+      .enunciado { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- CABECERA CON MENÚ -->
   <header>
     <div class="barra">
-      <a href="#inicio" class="logo">TECNO<span>MAT</span></a>
+      <a class="logo" data-ir="inicio">TECNO<span>MAT</span></a>
       <nav>
         <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#temario">Temario</a></li>
-          <li><a href="#recursos">Recursos</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a data-ir="inicio">Inicio</a></li>
+          <li><a data-ir="temas">Temas</a></li>
+          <li><a data-ir="simulacros">Simulacros</a></li>
+          <li><a data-ir="repaso">Repaso</a></li>
+          <li><a data-ir="evaluacion">Evaluación</a></li>
+          <li><span class="contador-nav" title="Preguntas respondidas en total">✔ <b id="navTotal">0</b> hechas</span></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- PORTADA -->
-  <div class="portada" id="inicio">
-    <h1>Bienvenido a TECNOMAT</h1>
-    <p>Aquí irá una breve descripción de la web. La cambiaremos cuando tengamos el temario.</p>
-    <a href="#temario" class="boton">Ver temario</a>
+  <!-- ================= INICIO ================= -->
+  <div id="v-inicio" class="vista activa">
+    <div class="portada">
+      <h1>Bienvenido a TECNOMAT</h1>
+      <p>Tests de verdadero o falso de Tecnología de Materiales, organizados por temas y apartados, con la justificación de cada respuesta.</p>
+      <div class="stats">
+        <div class="stat"><div class="num" id="stTotal">0</div><div class="lbl">preguntas respondidas</div></div>
+        <div class="stat"><div class="num" id="stUnicas">0</div><div class="lbl">preguntas distintas hechas</div></div>
+        <div class="stat"><div class="num" id="stAcierto">–</div><div class="lbl">% de aciertos</div></div>
+        <div class="stat"><div class="num" id="stMarcadas">0</div><div class="lbl">marcadas para repasar</div></div>
+      </div>
+      <a class="boton" data-ir="temas">Empezar un test</a>
+      &nbsp;
+      <a class="boton turq" data-ir="simulacros">Hacer un simulacro</a>
+    </div>
+
+    <section>
+      <h2>Temario</h2>
+      <p class="subtitulo">Elige un tema para practicar todos sus apartados o solo los que quieras.</p>
+      <div class="rejilla" id="rejillaInicio"></div>
+    </section>
   </div>
 
-  <!-- TEMARIO -->
-  <section id="temario">
-    <h2>Temario</h2>
-    <p class="subtitulo">Los temas se rellenarán con el contenido definitivo.</p>
-    <div class="rejilla">
-      <div class="tarjeta">
-        <div class="num">TEMA 1</div>
-        <h3>Título del tema</h3>
-        <p>Descripción breve del contenido del tema.</p>
+  <!-- ================= TEMAS ================= -->
+  <div id="v-temas" class="vista">
+    <section>
+      <h2>Temas</h2>
+      <p class="subtitulo">Pulsa un tema para elegir los apartados del test.</p>
+      <div class="rejilla" id="rejillaTemas"></div>
+    </section>
+  </div>
+
+  <!-- ================= TEMA (selección de apartados) ================= -->
+  <div id="v-tema" class="vista">
+    <section>
+      <button class="volver" data-ir="temas">← Volver a los temas</button>
+      <h2 id="temaTitulo">Tema</h2>
+      <p class="subtitulo" id="temaSub"></p>
+
+      <div class="panel">
+        <h3>1. Elige los apartados</h3>
+        <div class="mini-links"><a id="selTodos">Seleccionar todos</a><a id="selNinguno">Quitar todos</a></div>
+        <div id="listaApartados"></div>
       </div>
-      <div class="tarjeta">
-        <div class="num">TEMA 2</div>
-        <h3>Título del tema</h3>
-        <p>Descripción breve del contenido del tema.</p>
+
+      <div class="panel">
+        <h3>2. Configura el test</h3>
+        <div class="opciones">
+          <div class="opcion">
+            <label class="tit">Número de preguntas</label>
+            <div class="chips" id="chipsNum"></div>
+          </div>
+          <div class="opcion">
+            <label class="tit">¿Qué preguntas?</label>
+            <label class="check"><input type="radio" name="filtro" value="todas" checked> Todas (primero las que no has hecho)</label>
+            <label class="check"><input type="radio" name="filtro" value="nuevas"> Solo las que no he hecho nunca</label>
+            <label class="check"><input type="radio" name="filtro" value="falladas"> Solo las que fallé la última vez</label>
+            <label class="check"><input type="radio" name="filtro" value="marcadas"> Solo las marcadas para repasar</label>
+          </div>
+        </div>
+        <p class="resumen-sel" id="resumenSel"></p>
+        <div class="fila-botones"><button class="boton" id="btnEmpezarTema">Empezar test</button></div>
       </div>
-      <div class="tarjeta">
-        <div class="num">TEMA 3</div>
-        <h3>Título del tema</h3>
-        <p>Descripción breve del contenido del tema.</p>
+    </section>
+  </div>
+
+  <!-- ================= SIMULACROS ================= -->
+  <div id="v-simulacros" class="vista">
+    <section>
+      <h2>Simulacros de examen</h2>
+      <p class="subtitulo">Como en el examen: respondes todas las preguntas sin ver la corrección y al final ves la nota, las justificaciones y puedes marcar las que quieras repasar.</p>
+      <div class="panel">
+        <h3>1. ¿Qué materia entra?</h3>
+        <div class="chips" id="chipsAlcance"></div>
+        <p class="resumen-sel" id="alcanceInfo"></p>
       </div>
-      <div class="tarjeta">
-        <div class="num">TEMA 4</div>
-        <h3>Título del tema</h3>
-        <p>Descripción breve del contenido del tema.</p>
+      <div class="panel">
+        <h3>2. ¿Cuántas preguntas?</h3>
+        <div class="chips" id="chipsSimNum"></div>
+        <label class="check" style="margin-top:14px"><input type="checkbox" id="simPenaliza"> Mostrar también la nota con penalización (cada fallo resta un acierto)</label>
+        <div class="fila-botones"><button class="boton" id="btnEmpezarSim">Empezar simulacro</button></div>
       </div>
+    </section>
+  </div>
+
+  <!-- ================= TEST ================= -->
+  <div id="v-test" class="vista">
+    <section>
+      <div class="test-cab">
+        <div class="info" id="testInfo"></div>
+        <button class="boton sec peq" id="btnTerminar">Terminar test</button>
+      </div>
+      <div class="barra-prog"><div id="testBarra"></div></div>
+      <div class="pregunta-card">
+        <div class="meta" id="qMeta"></div>
+        <div class="enunciado" id="qTexto"></div>
+        <div class="respuestas" id="qResp"></div>
+        <div id="qCorr"></div>
+        <div class="acciones-test" id="qAcciones"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= RESULTADOS ================= -->
+  <div id="v-resultados" class="vista">
+    <section>
+      <h2 id="resTitulo">Resultado</h2>
+      <p class="subtitulo" id="resSub"></p>
+      <div class="panel">
+        <div class="nota-grande" id="resNota"></div>
+        <div class="res-stats" id="resStats"></div>
+        <div id="resPenal"></div>
+        <div class="fila-botones" id="resBotones"></div>
+      </div>
+      <h3 style="margin:26px 0 6px">Revisión de las preguntas</h3>
+      <div class="chips filtros-rev" id="filtrosRev"></div>
+      <div id="resLista"></div>
+    </section>
+  </div>
+
+  <!-- ================= REPASO ================= -->
+  <div id="v-repaso" class="vista">
+    <section>
+      <h2>Repaso</h2>
+      <p class="subtitulo">Aquí están todas las preguntas que has marcado para repasar. Puedes hacer un test solo con ellas.</p>
+      <div class="panel">
+        <div id="repasoResumen"></div>
+        <div class="fila-botones" id="repasoBotones"></div>
+      </div>
+      <div id="repasoLista"></div>
+    </section>
+  </div>
+
+  <!-- ================= EVALUACIÓN ================= -->
+  <div id="v-evaluacion" class="vista">
+    <div class="eval-fondo">
+      <section>
+        <h2>Cómo se evalúa la asignatura</h2>
+        <p class="subtitulo">Resumen de las normas del curso 2026-27 y cómo usar esta web para prepararte.</p>
+        <div class="eval-grid">
+          <div class="eval-card">
+            <h3>Evaluación progresiva (EP)</h3>
+            <ul>
+              <li><b>A. Tests telemáticos:</b> hasta 0,4 puntos. Hay que aprobar al menos 15 tests de cada tema, respondiendo todas las preguntas.</li>
+              <li><b>B. Trabajos y asistencia:</b> hasta 1 punto.</li>
+              <li><b>C. Prácticas de laboratorio:</b> obligatorias, hasta 0,8 puntos.</li>
+              <li><b>D. Dos pruebas tipo test V/F (PE):</b> cada una de dos temas, hasta 5 puntos en total. Mínimo 3/10 en la primera, 4/10 en la segunda y media de 5.</li>
+              <li><b>E. Examen final:</b> 25 preguntas de desarrollo (hasta 5 puntos; mínimo 4/10).</li>
+            </ul>
+          </div>
+          <div class="eval-card">
+            <h3>Evaluación global (EG) y extraordinaria</h3>
+            <ul>
+              <li><b>Test V/F de 50 preguntas:</b> hasta 5 puntos.</li>
+              <li><b>25 preguntas cortas de desarrollo:</b> hasta 5 puntos.</li>
+              <li>Examen de prácticas si no se han hecho las prácticas.</li>
+              <li>Los tests telemáticos pueden sumar hasta 0,4 puntos (W) si el examen llega a 4,5.</li>
+            </ul>
+          </div>
+          <div class="eval-card">
+            <h3>Qué entra en cada prueba tipo test</h3>
+            <ul>
+              <li><b>PE1:</b> Tema 2 (Uniones y soldadura) + Tema 4 (Inspección y ensayos).</li>
+              <li><b>PE2:</b> Tema 1 (Conformado) + Tema 3 (Comportamiento en servicio).</li>
+              <li><b>Examen global:</b> los cuatro temas.</li>
+              <li style="font-size:0.85rem">El reparto de temas por PE se ha tomado de los Excel de preguntas; confírmalo en el POD de tu curso.</li>
+            </ul>
+          </div>
+          <div class="eval-card">
+            <h3>Cómo prepararte con esta web</h3>
+            <ul>
+              <li>Haz tests por <b>apartados</b> hasta que hayas visto todas las preguntas de cada tema.</li>
+              <li>Lee siempre la <b>justificación</b>, aciertes o falles: el examen final es de desarrollo.</li>
+              <li><b>Marca para repasar</b> las dudosas y repítelas al terminar cada test.</li>
+              <li>Antes de cada PE, haz <b>simulacros de 25 o 50</b> preguntas del bloque que entra.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="resumen-sel" style="margin-top:22px">Libro de referencia de la asignatura: <i>Tecnología de Materiales</i>, de Javier Oñoro (ISBN 9788412715934).</p>
+      </section>
     </div>
-  </section>
+  </div>
 
-  <!-- RECURSOS -->
-  <section id="recursos" class="fondo-blanco">
-    <div>
-      <h2>Recursos</h2>
-      <p class="subtitulo">Apuntes, ejercicios, vídeos y enlaces útiles.</p>
-      <ul class="recursos">
-        <li>Recurso 1 (por ejemplo, apuntes en PDF)</li>
-        <li>Recurso 2 (por ejemplo, ejercicios resueltos)</li>
-        <li>Recurso 3 (por ejemplo, vídeos explicativos)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p class="subtitulo">¿Tienes alguna duda? Escríbenos.</p>
-    <p>Correo: <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a></p>
-  </section>
-
-  <!-- PIE DE PÁGINA -->
   <footer>
-    © 2026 TECNOMAT · Todos los derechos reservados
+    © 2026 TECNOMAT · Tu progreso se guarda en este navegador.<br>
+    <button id="btnReset">Borrar todo mi progreso</button>
   </footer>
 
+  <script src="preguntas.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var DATA = window.TECNOMAT_DATA;
+    var Q = DATA.q;
+    var porId = {};
+    Q.forEach(function (q) { porId[q.id] = q; });
+    var nombreApartado = {};
+    var libroApartado = {};
+    DATA.temas.forEach(function (t) { t.apartados.forEach(function (a) { nombreApartado[a.c] = a.n; libroApartado[a.c] = a.l; }); });
+    var nombreTema = {};
+    DATA.temas.forEach(function (t) { nombreTema[t.n] = t.nombre; });
+
+    /* ---------- PROGRESO (guardado en el navegador) ---------- */
+    var CLAVE = 'tecnomat_progreso_v1';
+    var P;
+    function cargar() {
+      try { P = JSON.parse(localStorage.getItem(CLAVE)) || null; } catch (e) { P = null; }
+      if (!P || typeof P !== 'object') P = {};
+      P.r = P.r || {};        // id -> [veces, aciertos, ultimaBien(1/0)]
+      P.total = P.total || 0; // respuestas totales
+      P.ok = P.ok || 0;       // aciertos totales
+      P.m = P.m || [];        // marcadas
+      P.tests = P.tests || 0;
+    }
+    function guardar() { try { localStorage.setItem(CLAVE, JSON.stringify(P)); } catch (e) {} }
+    cargar();
+    function marcada(id) { return P.m.indexOf(id) !== -1; }
+    function setMarcada(id, v) {
+      var i = P.m.indexOf(id);
+      if (v && i === -1) P.m.push(id);
+      if (!v && i !== -1) P.m.splice(i, 1);
+      guardar(); refrescarContadores();
+    }
+    function registrar(id, bien) {
+      var r = P.r[id] || [0, 0, 0];
+      r[0]++; if (bien) r[1]++; r[2] = bien ? 1 : 0;
+      P.r[id] = r; P.total++; if (bien) P.ok++;
+      guardar(); refrescarContadores();
+    }
+
+    /* ---------- UTILIDADES ---------- */
+    function $(id) { return document.getElementById(id); }
+    function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+    function barajar(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+    function hechas(lista) { var n = 0; lista.forEach(function (q) { if (P.r[q.id]) n++; }); return n; }
+    function pct(a, b) { return b ? Math.round(100 * a / b) : 0; }
+    function fmt(n) { return n.toLocaleString('es-ES'); }
+
+    /* ---------- NAVEGACIÓN ---------- */
+    var vistaActual = 'inicio';
+    function ir(v) {
+      if (vistaActual === 'test' && v !== 'test' && T && !T.fin && T.idx > 0 && !confirm('¿Salir del test? Se perderá el test en curso (las respuestas ya dadas sí cuentan en tu progreso).')) return;
+      document.querySelectorAll('.vista').forEach(function (x) { x.classList.remove('activa'); });
+      $('v-' + v).classList.add('activa');
+      document.querySelectorAll('nav a').forEach(function (a) { a.classList.toggle('activo', a.getAttribute('data-ir') === v); });
+      vistaActual = v;
+      if (v === 'inicio' || v === 'temas') pintarTemas();
+      if (v === 'repaso') pintarRepaso();
+      window.scrollTo(0, 0);
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-ir]');
+      if (a) { e.preventDefault(); ir(a.getAttribute('data-ir')); }
+    });
+
+    /* ---------- CONTADORES ---------- */
+    function refrescarContadores() {
+      var unicas = Object.keys(P.r).length;
+      $('navTotal').textContent = fmt(P.total);
+      $('stTotal').textContent = fmt(P.total);
+      $('stUnicas').textContent = fmt(unicas) + ' / ' + fmt(Q.length);
+      $('stAcierto').textContent = P.total ? pct(P.ok, P.total) + '%' : '–';
+      $('stMarcadas').textContent = fmt(P.m.length);
+    }
+
+    /* ---------- TARJETAS DE TEMAS ---------- */
+    function pintarTemas() {
+      ['rejillaInicio', 'rejillaTemas'].forEach(function (cont) {
+        var c = $(cont); c.innerHTML = '';
+        DATA.temas.forEach(function (t) {
+          var lista = Q.filter(function (q) { return q.t === t.n; });
+          var h = hechas(lista);
+          var card = el('div', 'tarjeta');
+          card.appendChild(el('span', 'pastilla', 'TEMA ' + t.n));
+          card.appendChild(el('h3', null, t.nombre));
+          card.appendChild(el('p', null, t.apartados.length + ' apartados · ' + fmt(lista.length) + ' preguntas · ' + t.libro));
+          var pr = el('div', 'progreso');
+          var tx = el('div', 'txt');
+          var izq = el('span'); izq.innerHTML = 'Hechas: <b>' + fmt(h) + '</b> / ' + fmt(lista.length);
+          tx.appendChild(izq); tx.appendChild(el('span', null, pct(h, lista.length) + '%'));
+          pr.appendChild(tx);
+          var b = el('div', 'barra-prog'); var d = el('div'); d.style.width = pct(h, lista.length) + '%'; b.appendChild(d);
+          pr.appendChild(b); card.appendChild(pr);
+          card.addEventListener('click', function () { abrirTema(t.n); });
+          c.appendChild(card);
+        });
+      });
+      refrescarContadores();
+    }
+
+    /* ---------- VISTA DE TEMA ---------- */
+    var temaSel = 1, numSel = 20;
+    var NUMS = [10, 20, 25, 50, 100, 'Todas'];
+    function abrirTema(n) {
+      temaSel = n;
+      var t = DATA.temas[n - 1];
+      $('temaTitulo').textContent = 'Tema ' + n + '. ' + t.nombre;
+      var lista = Q.filter(function (q) { return q.t === n; });
+      $('temaSub').textContent = 'Has hecho ' + fmt(hechas(lista)) + ' de ' + fmt(lista.length) + ' preguntas de este tema.';
+      var cont = $('listaApartados'); cont.innerHTML = '';
+      t.apartados.forEach(function (a) {
+        var qs = lista.filter(function (q) { return q.s === a.c; });
+        var lab = el('label', 'apartado');
+        var cb = el('input'); cb.type = 'checkbox'; cb.checked = true; cb.value = a.c;
+        cb.addEventListener('change', resumenTema);
+        lab.appendChild(cb);
+        var nom = el('span', 'nom', a.c + '  ' + a.n);
+        nom.appendChild(el('span', 'libro-ref', '📖 Libro ' + a.l));
+        lab.appendChild(nom);
+        var cnt = el('span', 'cnt'); cnt.innerHTML = 'hechas <b>' + hechas(qs) + '</b> / ' + qs.length;
+        lab.appendChild(cnt);
+        cont.appendChild(lab);
+      });
+      ir('tema');
+      resumenTema();
+    }
+    function apartadosMarcados() {
+      return Array.prototype.map.call(document.querySelectorAll('#listaApartados input:checked'), function (c) { return c.value; });
+    }
+    function filtroSel() { return document.querySelector('input[name=filtro]:checked').value; }
+    function poolTema() {
+      var aps = apartadosMarcados(), f = filtroSel();
+      return Q.filter(function (q) {
+        if (q.t !== temaSel || aps.indexOf(q.s) === -1) return false;
+        if (f === 'nuevas') return !P.r[q.id];
+        if (f === 'falladas') return P.r[q.id] && P.r[q.id][2] === 0;
+        if (f === 'marcadas') return marcada(q.id);
+        return true;
+      });
+    }
+    function resumenTema() {
+      var pool = poolTema();
+      var n = numSel === 'Todas' ? pool.length : Math.min(numSel, pool.length);
+      $('resumenSel').innerHTML = 'Preguntas disponibles con esta selección: <b>' + fmt(pool.length) + '</b>. El test tendrá <b>' + fmt(n) + '</b> preguntas.';
+      $('btnEmpezarTema').disabled = n === 0;
+    }
+    function pintarChips(contId, valores, actual, onSel) {
+      var c = $(contId); c.innerHTML = '';
+      valores.forEach(function (v) {
+        var b = el('button', 'chip' + (v === actual ? ' sel' : ''), typeof v === 'object' ? v.label : String(v));
+        b.addEventListener('click', function () {
+          c.querySelectorAll('.chip').forEach(function (x) { x.classList.remove('sel'); });
+          b.classList.add('sel'); onSel(v);
+        });
+        c.appendChild(b);
+      });
+    }
+    pintarChips('chipsNum', NUMS, numSel, function (v) { numSel = v; resumenTema(); });
+    document.querySelectorAll('input[name=filtro]').forEach(function (r) { r.addEventListener('change', resumenTema); });
+    $('selTodos').addEventListener('click', function () { document.querySelectorAll('#listaApartados input').forEach(function (c) { c.checked = true; }); resumenTema(); });
+    $('selNinguno').addEventListener('click', function () { document.querySelectorAll('#listaApartados input').forEach(function (c) { c.checked = false; }); resumenTema(); });
+    $('btnEmpezarTema').addEventListener('click', function () {
+      var pool = poolTema();
+      var noHechas = barajar(pool.filter(function (q) { return !P.r[q.id]; }));
+      var yaHechas = barajar(pool.filter(function (q) { return P.r[q.id]; }));
+      var orden = filtroSel() === 'todas' ? noHechas.concat(yaHechas) : barajar(pool);
+      var n = numSel === 'Todas' ? orden.length : Math.min(numSel, orden.length);
+      var aps = apartadosMarcados();
+      var desc = 'Tema ' + temaSel + (aps.length === DATA.temas[temaSel - 1].apartados.length ? ' · todos los apartados' : ' · apartados ' + aps.join(', '));
+      empezarTest(barajar(orden.slice(0, n)), 'practica', desc);
+    });
+
+    /* ---------- SIMULACROS ---------- */
+    var ALCANCES = [
+      { label: 'Todos los temas', temas: [1, 2, 3, 4], info: 'Como el examen de evaluación global (50 preguntas V/F de toda la asignatura).' },
+      { label: 'PE1 · Temas 2 y 4', temas: [2, 4], info: 'Uniones y soldadura + Inspección y ensayos (libro, partes II y IV).' },
+      { label: 'PE2 · Temas 1 y 3', temas: [1, 3], info: 'Conformado + Comportamiento en servicio (libro, partes I y III).' },
+      { label: 'Tema 1', temas: [1], info: nombreTema[1] },
+      { label: 'Tema 2', temas: [2], info: nombreTema[2] },
+      { label: 'Tema 3', temas: [3], info: nombreTema[3] },
+      { label: 'Tema 4', temas: [4], info: nombreTema[4] }
+    ];
+    var alcSel = ALCANCES[0], simNum = 50;
+    pintarChips('chipsAlcance', ALCANCES, alcSel, function (v) { alcSel = v; $('alcanceInfo').textContent = v.info; });
+    $('alcanceInfo').textContent = alcSel.info;
+    pintarChips('chipsSimNum', [25, 50], simNum, function (v) { simNum = v; });
+    $('btnEmpezarSim').addEventListener('click', function () {
+      // Reparto proporcional entre los temas del alcance
+      var porTema = alcSel.temas.map(function (t) { return Q.filter(function (q) { return q.t === t; }); });
+      var tot = porTema.reduce(function (s, l) { return s + l.length; }, 0);
+      var cuotas = porTema.map(function (l) { return Math.floor(simNum * l.length / tot); });
+      var resto = simNum - cuotas.reduce(function (s, x) { return s + x; }, 0);
+      for (var i = 0; resto > 0; i = (i + 1) % cuotas.length, resto--) cuotas[i]++;
+      var sel = [];
+      porTema.forEach(function (l, i) { sel = sel.concat(barajar(l).slice(0, cuotas[i])); });
+      empezarTest(barajar(sel), 'simulacro', 'Simulacro · ' + alcSel.label + ' · ' + simNum + ' preguntas');
+    });
+
+    /* ---------- MOTOR DEL TEST ---------- */
+    var T = null;
+    function empezarTest(preguntas, modo, desc) {
+      if (!preguntas.length) { alert('No hay preguntas con esta selección.'); return; }
+      T = { qs: preguntas, modo: modo, desc: desc, idx: 0, resp: {}, fin: false, penal: $('simPenaliza').checked };
+      ir('test');
+      pintarPregunta();
+    }
+    function textoResp(v) { return v === 1 ? 'Verdadero' : v === 0 ? 'Falso' : 'En blanco'; }
+    function pintarPregunta() {
+      var q = T.qs[T.idx];
+      var aciertos = 0; Object.keys(T.resp).forEach(function (k) { if (T.resp[k] === porId[k].a) aciertos++; });
+      $('testInfo').innerHTML = (T.modo === 'simulacro' ? '📝 ' : '') + 'Pregunta <b>' + (T.idx + 1) + '</b> de <b>' + T.qs.length + '</b>' +
+        (T.modo === 'practica' ? ' · aciertos: <b>' + aciertos + '</b>' : '') + ' · <span style="font-weight:400">' + T.desc + '</span>';
+      $('testBarra').style.width = pct(T.idx, T.qs.length) + '%';
+      var meta = $('qMeta'); meta.innerHTML = '';
+      meta.appendChild(el('span', 'pastilla', 'TEMA ' + q.t));
+      meta.appendChild(el('span', null, q.s + ' ' + nombreApartado[q.s] + ' · 📖 Libro ' + libroApartado[q.s]));
+      var r = P.r[q.id];
+      if (r) meta.appendChild(el('span', null, '· ya la has respondido ' + r[0] + (r[0] === 1 ? ' vez' : ' veces')));
+      $('qTexto').textContent = q.q;
+      var cont = $('qResp'); cont.innerHTML = '';
+      var opciones = [[1, 'Verdadero', 'v'], [0, 'Falso', 'f']];
+      if (T.modo === 'simulacro') opciones.push([-1, 'En blanco', 'blanco']);
+      opciones.forEach(function (o) {
+        var b = el('button', 'resp ' + o[2], o[1]);
+        b.addEventListener('click', function () { responder(o[0]); });
+        cont.appendChild(b);
+      });
+      $('qCorr').innerHTML = '';
+      $('qAcciones').innerHTML = '';
+      if (T.modo === 'simulacro' && T.idx > 0) {
+        var atras = el('button', 'boton sec peq', '← Anterior');
+        atras.addEventListener('click', function () { T.idx--; pintarPregunta(); });
+        $('qAcciones').appendChild(atras);
+      }
+      if (T.modo === 'simulacro' && T.resp[q.id] !== undefined) {
+        cont.querySelectorAll('.resp').forEach(function (b, i) { if (opciones[i][0] === T.resp[q.id]) b.classList.add('elegida'); });
+      }
+    }
+    function bloqueJustificacion(q) {
+      var j = el('div', 'justif');
+      j.appendChild(el('div', 'tit', 'Justificación'));
+      j.appendChild(el('p', null, q.e || 'Esta pregunta todavía no tiene justificación.'));
+      j.appendChild(el('div', 'libro-cita', '📖 Para ampliar: libro, apartado ' + libroApartado[q.s] + ' (' + nombreApartado[q.s] + ')'));
+      return j;
+    }
+    function casillaMarcar(q) {
+      var lab = el('label', 'marcar');
+      var cb = el('input'); cb.type = 'checkbox'; cb.checked = marcada(q.id);
+      cb.addEventListener('change', function () { setMarcada(q.id, cb.checked); });
+      lab.appendChild(cb); lab.appendChild(el('span', null, '🔖 Marcar para repasar'));
+      return lab;
+    }
+    function responder(v) {
+      var q = T.qs[T.idx];
+      if (T.modo === 'simulacro') {
+        T.resp[q.id] = v;
+        siguiente(); return;
+      }
+      if (T.resp[q.id] !== undefined) return;
+      T.resp[q.id] = v;
+      var bien = v === q.a;
+      registrar(q.id, bien);
+      var botones = $('qResp').querySelectorAll('.resp');
+      botones.forEach(function (b, i) {
+        var val = i === 0 ? 1 : 0;
+        b.disabled = true;
+        if (val === q.a) b.classList.add('es-correcta');
+        else if (val === v) b.classList.add('es-incorrecta');
+      });
+      var c = el('div', 'correccion ' + (bien ? 'ok' : 'mal'));
+      c.appendChild(el('div', 'veredicto', bien ? '✔ ¡Correcto!' : '✘ Incorrecto'));
+      c.appendChild(el('div', null, 'La afirmación es ' + (q.a ? 'VERDADERA' : 'FALSA') + '.'));
+      c.appendChild(bloqueJustificacion(q));
+      c.appendChild(casillaMarcar(q));
+      $('qCorr').innerHTML = ''; $('qCorr').appendChild(c);
+      var acc = $('qAcciones'); acc.innerHTML = '';
+      acc.appendChild(el('span'));
+      var sig = el('button', 'boton', T.idx + 1 < T.qs.length ? 'Siguiente →' : 'Ver resultado');
+      sig.addEventListener('click', siguiente);
+      acc.appendChild(sig);
+      sig.focus();
+    }
+    function siguiente() {
+      if (T.idx + 1 < T.qs.length) { T.idx++; pintarPregunta(); window.scrollTo(0, 0); }
+      else terminar();
+    }
+    $('btnTerminar').addEventListener('click', function () {
+      var resp = Object.keys(T.resp).length;
+      if (resp < T.qs.length && !confirm('Te quedan ' + (T.qs.length - resp) + ' preguntas sin responder. ¿Terminar igualmente?')) return;
+      terminar();
+    });
+    // Atajos de teclado: V / F / B y Enter
+    document.addEventListener('keydown', function (e) {
+      if (vistaActual !== 'test' || !T || T.fin) return;
+      var k = e.key.toLowerCase();
+      var q = T.qs[T.idx];
+      var respondida = T.modo === 'practica' && T.resp[q.id] !== undefined;
+      if (!respondida && k === 'v') responder(1);
+      else if (!respondida && k === 'f') responder(0);
+      else if (!respondida && k === 'b' && T.modo === 'simulacro') responder(-1);
+      else if (respondida && k === 'enter') { e.preventDefault(); siguiente(); }
+    });
+
+    /* ---------- RESULTADOS ---------- */
+    var filtroRev = 'todas';
+    function terminar() {
+      T.fin = true;
+      // En simulacro se registran todas al final (las que están en blanco no cuentan)
+      if (T.modo === 'simulacro') {
+        T.qs.forEach(function (q) {
+          var v = T.resp[q.id];
+          if (v === 0 || v === 1) registrar(q.id, v === q.a);
+        });
+      }
+      P.tests++; guardar();
+      var ok = 0, mal = 0, blanco = 0;
+      T.qs.forEach(function (q) {
+        var v = T.resp[q.id];
+        if (v === undefined || v === -1) blanco++; else if (v === q.a) ok++; else mal++;
+      });
+      var n = T.qs.length;
+      var nota = 10 * ok / n;
+      $('resTitulo').textContent = T.modo === 'simulacro' ? 'Resultado del simulacro' : 'Resultado del test';
+      $('resSub').textContent = T.desc;
+      $('resNota').textContent = nota.toFixed(2).replace('.', ',') + ' / 10';
+      var st = $('resStats'); st.innerHTML = '';
+      st.appendChild(el('div', 'res-stat ok', '✔ ' + ok + ' aciertos'));
+      st.appendChild(el('div', 'res-stat mal', '✘ ' + mal + ' fallos'));
+      if (blanco) st.appendChild(el('div', 'res-stat', '○ ' + blanco + ' sin responder'));
+      st.appendChild(el('div', 'res-stat', nota >= 5 ? '🎉 Aprobado' : 'Sigue practicando'));
+      $('resPenal').innerHTML = '';
+      if (T.modo === 'simulacro' && T.penal) {
+        var np = Math.max(0, 10 * (ok - mal) / n);
+        $('resPenal').appendChild(el('p', 'resumen-sel', 'Nota con penalización (cada fallo resta un acierto): ' + np.toFixed(2).replace('.', ',') + ' / 10'));
+      }
+      filtroRev = T.modo === 'simulacro' ? 'todas' : 'mal';
+      pintarBotonesResultado();
+      pintarChips('filtrosRev', [{ label: 'Todas', v: 'todas' }, { label: 'Falladas y en blanco', v: 'mal' }, { label: 'Acertadas', v: 'ok' }, { label: 'Marcadas', v: 'marc' }],
+        null, function (o) { filtroRev = o.v; pintarRevision(); });
+      document.querySelectorAll('#filtrosRev .chip').forEach(function (c, i) { if (['todas', 'mal', 'ok', 'marc'][i] === filtroRev) c.classList.add('sel'); });
+      pintarRevision();
+      ir('resultados');
+    }
+    function pintarBotonesResultado() {
+      var b = $('resBotones'); b.innerHTML = '';
+      var marcadasTest = T.qs.filter(function (q) { return marcada(q.id); });
+      var rep = el('button', 'boton', '🔖 Repetir las marcadas para repasar (' + marcadasTest.length + ')');
+      rep.disabled = !marcadasTest.length;
+      rep.addEventListener('click', function () { empezarTest(barajar(marcadasTest), 'practica', 'Repaso de las marcadas del test anterior'); });
+      b.appendChild(rep);
+      var fall = T.qs.filter(function (q) { var v = T.resp[q.id]; return v !== q.a; });
+      var bf = el('button', 'boton turq', 'Repetir falladas (' + fall.length + ')');
+      bf.disabled = !fall.length;
+      bf.addEventListener('click', function () { empezarTest(barajar(fall), 'practica', 'Repaso de las falladas del test anterior'); });
+      b.appendChild(bf);
+      var nuevo = el('button', 'boton sec', 'Nuevo test');
+      nuevo.addEventListener('click', function () { ir(T.modo === 'simulacro' ? 'simulacros' : 'tema'); });
+      b.appendChild(nuevo);
+    }
+    function pintarRevision() {
+      var c = $('resLista'); c.innerHTML = '';
+      var n = 0;
+      T.qs.forEach(function (q, i) {
+        var v = T.resp[q.id];
+        var estado = (v === undefined || v === -1) ? 'blanco' : (v === q.a ? 'ok' : 'mal');
+        if (filtroRev === 'mal' && estado === 'ok') return;
+        if (filtroRev === 'ok' && estado !== 'ok') return;
+        if (filtroRev === 'marc' && !marcada(q.id)) return;
+        n++;
+        var it = el('div', 'revision-item ' + estado);
+        it.appendChild(el('div', 'q', (i + 1) + '. ' + q.q));
+        var r = el('div', 'r');
+        r.innerHTML = 'Tu respuesta: <b>' + textoResp(v === undefined ? -1 : v) + '</b> · Correcta: <b>' + textoResp(q.a) + '</b> · <span style="color:var(--gris)">Tema ' + q.t + ', apartado ' + q.s + ' (libro ' + libroApartado[q.s] + ')</span>';
+        it.appendChild(r);
+        it.appendChild(bloqueJustificacion(q));
+        var mk = casillaMarcar(q);
+        mk.querySelector('input').addEventListener('change', pintarBotonesResultado);
+        it.appendChild(mk);
+        c.appendChild(it);
+      });
+      if (!n) c.appendChild(el('p', 'vacio', 'No hay preguntas en este filtro.'));
+    }
+
+    /* ---------- REPASO ---------- */
+    function pintarRepaso() {
+      var marc = P.m.map(function (id) { return porId[id]; }).filter(Boolean);
+      var res = $('repasoResumen'); res.innerHTML = '';
+      var p = el('p'); p.innerHTML = 'Tienes <b>' + marc.length + '</b> preguntas marcadas para repasar.';
+      res.appendChild(p);
+      var b = $('repasoBotones'); b.innerHTML = '';
+      var todas = el('button', 'boton', 'Test con todas las marcadas (' + marc.length + ')');
+      todas.disabled = !marc.length;
+      todas.addEventListener('click', function () { empezarTest(barajar(marc), 'practica', 'Repaso · todas las marcadas'); });
+      b.appendChild(todas);
+      DATA.temas.forEach(function (t) {
+        var mt = marc.filter(function (q) { return q.t === t.n; });
+        if (!mt.length) return;
+        var bt = el('button', 'boton sec peq', 'Tema ' + t.n + ' (' + mt.length + ')');
+        bt.addEventListener('click', function () { empezarTest(barajar(mt), 'practica', 'Repaso · marcadas del Tema ' + t.n); });
+        b.appendChild(bt);
+      });
+      var fall = Q.filter(function (q) { return P.r[q.id] && P.r[q.id][2] === 0; });
+      var bf = el('button', 'boton turq', 'Test con las que fallé la última vez (' + fall.length + ')');
+      bf.disabled = !fall.length;
+      bf.addEventListener('click', function () { empezarTest(barajar(fall).slice(0, 50), 'practica', 'Repaso · falladas (máx. 50)'); });
+      b.appendChild(bf);
+
+      var lista = $('repasoLista'); lista.innerHTML = '';
+      if (!marc.length) { lista.appendChild(el('p', 'vacio', 'Todavía no has marcado ninguna pregunta. Durante los tests, usa la casilla «Marcar para repasar».')); return; }
+      DATA.temas.forEach(function (t) {
+        var mt = marc.filter(function (q) { return q.t === t.n; });
+        if (!mt.length) return;
+        lista.appendChild(el('h3', null, 'Tema ' + t.n + '. ' + t.nombre)).style.margin = '22px 0 10px';
+        mt.forEach(function (q) {
+          var it = el('div', 'revision-item');
+          it.appendChild(el('div', 'q', q.q));
+          var r = el('div', 'r'); r.innerHTML = 'Respuesta: <b>' + textoResp(q.a) + '</b> · <span style="color:var(--gris)">' + q.s + ' ' + nombreApartado[q.s] + '</span>';
+          it.appendChild(r);
+          it.appendChild(bloqueJustificacion(q));
+          var mk = casillaMarcar(q);
+          mk.querySelector('input').addEventListener('change', function () { setTimeout(pintarRepaso, 150); });
+          it.appendChild(mk);
+          lista.appendChild(it);
+        });
+      });
+    }
+
+    /* ---------- BORRAR PROGRESO ---------- */
+    $('btnReset').addEventListener('click', function () {
+      if (confirm('¿Seguro que quieres borrar todo tu progreso (contadores, preguntas hechas y marcadas)? No se puede deshacer.')) {
+        localStorage.removeItem(CLAVE); cargar(); ir('inicio');
+      }
+    });
+
+    pintarTemas();
+  })();
+  </script>
 </body>
 </html>
