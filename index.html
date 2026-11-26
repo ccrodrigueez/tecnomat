@@ -26,7 +26,7 @@
 
     /* ===== BARRA SUPERIOR FINA ===== */
     .barra { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--linea); }
-    .barra-in { max-width: 760px; margin: 0 auto; padding: 8px 18px; display: flex; align-items: center; gap: 14px; }
+    .barra-in { width: 100%; margin: 0; padding: 8px clamp(16px, 3vw, 48px); display: flex; align-items: center; gap: 14px; }
     .logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.5px; color: var(--negro); text-decoration: none; cursor: pointer; }
     .logo-cuad { width: 30px; height: 30px; border-radius: 8px; background: var(--naranja); color: var(--negro); display: flex; align-items: center; justify-content: center; font-weight: 900; }
     nav.enlaces { display: flex; gap: 4px; margin-left: auto; }
@@ -46,7 +46,7 @@
 
     /* ===== COLUMNA CENTRAL ===== */
     main { min-height: 100vh; display: flex; flex-direction: column; }
-    .contenido { width: 100%; max-width: 760px; margin: 0 auto; padding: 22px 18px 50px; flex: 1; }
+    .contenido { width: 100%; margin: 0; padding: 24px clamp(16px, 3vw, 48px) 50px; flex: 1; }
     .vista { display: none; }
     .vista.activa { display: block; }
 
@@ -129,9 +129,9 @@
     .test-info { color: var(--gris); font-size: 0.88rem; margin-bottom: 8px; }
     .test-info b { color: var(--negro); }
     .meta { font-size: 0.8rem; color: var(--gris); margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
-    .enunciado { font-size: 1.15rem; font-weight: 600; color: var(--negro); margin-bottom: 18px; }
+    .enunciado { font-size: clamp(1.15rem, 1.4vw, 1.5rem); font-weight: 600; color: var(--negro); margin-bottom: 18px; }
     .respuestas { display: flex; flex-direction: column; gap: 8px; }
-    .resp { width: 100%; padding: 13px; border-radius: 10px; font-size: 1rem; font-weight: 700; border: 1px solid var(--linea); background: var(--blanco); color: var(--negro); }
+    .resp { width: 100%; padding: 16px; border-radius: 10px; font-size: 1rem; font-weight: 700; border: 1px solid var(--linea); background: var(--blanco); color: var(--negro); }
     .resp.v:hover:not(:disabled) { border-color: var(--ok); background: var(--ok-claro); }
     .resp.f:hover:not(:disabled) { border-color: var(--mal); background: var(--mal-claro); }
     .resp.blanco { font-size: 0.9rem; border-style: dashed; color: var(--gris); }
